@@ -1,6 +1,5 @@
 from __future__ import division
 
-import sys
 from collections import defaultdict
 from math import log
 import csv
@@ -64,6 +63,15 @@ def classify(classifier, features):
     )
 
 
+# function to extract features modify it change
+# how words are separated, which words are taken and so on
+def get_features(text: str) -> tuple:
+    # v2 addition: delete words with length < 2
+    long_word = lambda s: len(s) > 1
+
+    return tuple( filter(long_word, text.split()) )
+
+
 # create dicts for train and tests
 # their type is Dict<TupleOfStrings, String>
 # where TupleOfStrings are words for language
@@ -81,9 +89,6 @@ def raw_data():
     # reading header to make it absent in data
     header = next(data_reader)
 
-    # v2 addition: delete words with length < 2
-    long_word = lambda s: len(s) > 1
-
     print('reading train data')
     # reading 400 thousands of samples as training data
     i = 0
@@ -93,7 +98,7 @@ def raw_data():
         # we split program by space and get list ['#include<iostream>', 'using', 'namespace', 'std;']
         # we delete words from 1 symbol
         # we make tuple from result. tuple is immutable list
-        words = tuple( filter(long_word, line[1].split()) )
+        words = get_features(line[1])
         train_data[words] = line[2]
         i += 1
         # we take only 400_000 programs for training, the others for test
@@ -107,9 +112,10 @@ def raw_data():
     print('reading test data')
     # other 230_778 # idk how 400_000 + 230_778 = 620_536
     for line in data_reader:
-        words = tuple( filter(long_word, line[1].split()) )
+        words = get_features(line[1])
         test_data[words] = line[2]
     # print(len(all_data)) # 620_536
+
 
 data = raw_data() # features
 classifier = train(train_data)
@@ -145,3 +151,4 @@ print('ready.')
 # e.g. JAVA: 1234 of 4312
 for k, v in analysis.items():
     print(k + ': ' + str(v[0]) + ' of ' + str(v[1]))
+
