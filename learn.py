@@ -80,7 +80,7 @@ test_data = {}
 train_data = {}
 
 
-def raw_data():
+def read_data():
     # just reading data to test_data and train_data
     # open file data.csv
     data_csv = open('data.csv', 'r')
@@ -117,7 +117,7 @@ def raw_data():
     # print(len(all_data)) # 620_536
 
 
-data = raw_data() # features
+read_data() # features
 classifier = train(train_data)
 
 # create dictionary with default value equal to (0, 0)
