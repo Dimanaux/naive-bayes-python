@@ -97,7 +97,12 @@ def raw_data():
         train_data[words] = line[2]
         i += 1
         # we take only 400_000 programs for training, the others for test
-        if i >= 400_000:
+#FIXME
+#TODO replace 400 with 400_000 or number of programs to learn
+# remaining will be used for test
+# please note: original dataset has over 620 thousands of samples (link in README.md)
+# data.csv in this repository has a thousand times less
+        if i >= 400:
             break
     print('reading test data')
     # other 230_778 # idk how 400_000 + 230_778 = 620_536
