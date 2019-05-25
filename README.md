@@ -9,7 +9,8 @@ Requirements:
     - Python 3
 
 Some results (not so good, but authors think it is caused by get_features function simplicity):
-<LANG>: <guessed right> of <total texts in LANG> 
+`<LANG>: <guessed right> of <total texts in LANG>`
+
     - C: 45437 of 79948
     - C++: 96156 of 100516
     - PAS fpc: 541 of 545
