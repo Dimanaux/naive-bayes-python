@@ -9,6 +9,7 @@ Requirements:
     - Python 3
 
 Some results (not so good, but authors think it is caused by get_features function simplicity):
+
 `<LANG>: <guessed right> of <total texts in LANG>`
 
     - C: 45437 of 79948
